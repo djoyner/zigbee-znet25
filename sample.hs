@@ -21,7 +21,7 @@ main = do
       hSetBuffering h NoBuffering
 
       -- Encode and send an AT command
-      mapM_ (B.hPut h) $ Z.encode $ Z.ATCommand 0 (Z.commandName cmdName) B.empty
+      mapM_ (B.hPut h) $ Z.encode $ Z.ATCommand 1 (Z.commandName cmdName) B.empty
 
       -- Run the decoder until an AT command response is received
       waitResponse h Z.initDecode
@@ -35,6 +35,12 @@ main = do
         then return ()
         else waitResponse h ds'
 
-    printResponse (Left errStr) = hPutStrLn stderr errStr >> return False
-    printResponse (Right frame) = putStrLn (show frame) >> return True
+    printResponse (Right f@(ATCommandResponse _ _ _ _)) =
+      putStrLn (show f) >> return True
+
+    printResponse (Right f) =
+      putStrLn (show f) >> return False
+
+    printResponse (Left errStr) =
+      hPutStrLn stderr errStr >> return False
 

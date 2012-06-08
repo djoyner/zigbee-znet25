@@ -8,7 +8,7 @@ author:             David Joyner <david@joynerhome.net>
 maintainer:         David Joyner <david@joynerhome.net>
 stability:          experimental
 tested-with:        GHC == 7.0.4
-synopsis:           XBee ZNet 2.5 (ZigBee) wireless modem communications library
+synopsis:           XBee ZNet 2.5 (ZigBee) wireless modem communications
 cabal-version:      >= 1.8
 homepage:           https://github.com/djoyner/zigbee-znet25
 bug-reports:        https://github.com/djoyner/zigbee-znet25/issues

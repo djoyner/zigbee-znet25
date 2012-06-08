@@ -6,8 +6,8 @@ XBee/XBee-PRO (ZibBee) ZNet 2.5 RF modules.
 The library performs binary encoding/decoding, on-the-wire framing,
 and error checking of control and data "API" frames.  In other words 
 the library expects to communicate with an XBee modem that has AP
-parameter = 2, indicating API frames with HDLC-like escape characters.  
-This mode provides for 8-bit transparent operation and is described in
+parameter = 2, indicating API frames with HDLC-like escape characters.  This
+mode provides for 8-bit transparent operation and is described in
 Section 6 of the
 [XBee ZNet 2.5 Product Manual] (ftp://ftp1.digi.com/support/documentation/90000866_C.pdf).
 
@@ -29,5 +29,5 @@ is included.
 
 # Author and Maintainer
 
-David Joyner <david@joynerhome.net>
+David Joyner, <david@joynerhome.net>
 
