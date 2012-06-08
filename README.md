@@ -1,7 +1,7 @@
 # Overview
 
 This is a Haskell protocol library enabling wireless communications via
-XBee/XBee-PRO (ZibBee) ZNet 2.5 RF modules.
+XBee/XBee-PRO (ZigBee) ZNet 2.5 RF modules.
 
 The library performs binary encoding/decoding, on-the-wire framing,
 and error checking of control and data "API" frames.  In other words 
