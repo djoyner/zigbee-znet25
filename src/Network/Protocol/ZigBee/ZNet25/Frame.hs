@@ -247,22 +247,26 @@ instance Serialize Frame where
             getNodeIdentificationIndicator
         | otherwise = return $ ApiIdNotImplemented apiId
 
+getModemStatus :: Get Frame
 getModemStatus =
   ModemStatus <$>
     get
 
+getATCommand :: Get Frame
 getATCommand =
   ATCommand <$>
     get <*>
     get <*>
     getRemainingByteString
 
+getATCommandQueueParameterValue :: Get Frame
 getATCommandQueueParameterValue =
   ATCommandQueueParameterValue <$>
     get <*>
     get <*>
     getRemainingByteString
 
+getATCommandResponse :: Get Frame
 getATCommandResponse =
   ATCommandResponse <$>
     get <*>
@@ -270,6 +274,7 @@ getATCommandResponse =
     get <*>
     getRemainingByteString
 
+getRemoteCommandRequest :: Get Frame
 getRemoteCommandRequest =
   RemoteCommandRequest <$>
     get <*>
@@ -279,6 +284,7 @@ getRemoteCommandRequest =
     get <*>
     getRemainingByteString
 
+getRemoteCommandResponse :: Get Frame
 getRemoteCommandResponse =
   RemoteCommandResponse <$>
     get <*>
@@ -288,6 +294,7 @@ getRemoteCommandResponse =
     get <*>
     getRemainingByteString
 
+getZigBeeTransmitRequest :: Get Frame
 getZigBeeTransmitRequest =
   ZigBeeTransmitRequest <$>
     get <*>
@@ -297,6 +304,7 @@ getZigBeeTransmitRequest =
     get <*>
     getRemainingByteString
 
+getExplicitAddressingZigBeeCommandFrame :: Get Frame
 getExplicitAddressingZigBeeCommandFrame =
   ExplicitAddressingZigBeeCommandFrame <$>
     get <*>
@@ -310,6 +318,7 @@ getExplicitAddressingZigBeeCommandFrame =
     get <*>
     getRemainingByteString
 
+getZigBeeTransmitStatus :: Get Frame
 getZigBeeTransmitStatus =
   ZigBeeTransmitStatus <$>
     get <*>
@@ -318,6 +327,7 @@ getZigBeeTransmitStatus =
     get <*>
     get
 
+getZigBeeReceivePacket :: Get Frame
 getZigBeeReceivePacket =
   ZigBeeReceivePacket <$>
     get <*>
@@ -325,6 +335,7 @@ getZigBeeReceivePacket =
     get <*>
     getRemainingByteString
 
+getZigBeeExplicitRxIndicator :: Get Frame
 getZigBeeExplicitRxIndicator =
   ZigBeeExplicitRxIndicator <$>
     get <*>
@@ -336,6 +347,7 @@ getZigBeeExplicitRxIndicator =
     get <*>
     getRemainingByteString
 
+getZigBeeIODataSampleIndicator :: Get Frame
 getZigBeeIODataSampleIndicator =
   ZigBeeIODataSampleIndicator <$>
     get <*>
@@ -346,6 +358,7 @@ getZigBeeIODataSampleIndicator =
     get <*>
     getRemainingByteString
 
+getXBeeSensorReadIndicator :: Get Frame
 getXBeeSensorReadIndicator =
   XBeeSensorReadIndicator <$>
     get <*>
@@ -354,6 +367,7 @@ getXBeeSensorReadIndicator =
     get <*>
     getRemainingByteString
 
+getNodeIdentificationIndicator :: Get Frame
 getNodeIdentificationIndicator =
   NodeIdentificationIndicator <$>
     get <*>
@@ -467,20 +481,26 @@ type TransmitOptions = Word8
 type TransmitRetryCount = Word8
 type XBeeSensorMask = Word8
 
+putRawByteString :: B.ByteString -> PutM ()
 putRawByteString bs = mapM_ put $ B.unpack bs
 
+getRemainingByteString :: Get B.ByteString
 getRemainingByteString = do
   len <- remaining
   getByteString $ fromIntegral len
 
+putNullTerminatedString :: String -> PutM ()
 putNullTerminatedString s = mapM_ put s >> (put $ chr 0)
 
+getNullTerminatedString :: Get String
 getNullTerminatedString = get >>= go
   where
     go c | ord c /= 0 = liftM (c:) getNullTerminatedString
          | otherwise  = return []
 
+showHexString :: String -> B.ByteString -> String
 showHexString sep bs = intercalate sep $ map (printf "%02x") $ B.unpack bs
 
+showHexAddress :: B.ByteString -> String
 showHexAddress = showHexString ":"
 

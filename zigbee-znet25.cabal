@@ -51,7 +51,7 @@ library
     Network.Protocol.ZigBee.ZNet25.Constants
 
   build-depends:
-    base,
+    base == 4.*,
     bytestring,
     cereal,
     MissingH,
@@ -61,10 +61,9 @@ library
   hs-source-dirs:   src
 
   if flag(developer)
-    ghc-options:    -Werror -fhpc
-    x-hpc:          true
+    ghc-options:    -Werror
 
-  ghc-options:      -O2 -Wall
+  ghc-options:      -Wall
 
 test-suite tests
   type:             exitcode-stdio-1.0
@@ -72,13 +71,12 @@ test-suite tests
   main-is:          Properties.hs
 
   if flag(developer)
-    ghc-options:    -Werror -fhpc
-    x-hpc:          true
+    ghc-options:    -Werror
 
   ghc-options:      -Wall -rtsopts -fno-warn-missing-signatures
 
   build-depends:
-    base,
+    base == 4.*,
     bytestring,
     mtl,
     QuickCheck >= 2.0,

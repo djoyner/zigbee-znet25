@@ -1,3 +1,5 @@
+{-# OPTIONS -fno-warn-missing-signatures #-}
+
 module Network.Protocol.ZigBee.ZNet25.Constants where
 
 import Data.Word (Word8)
