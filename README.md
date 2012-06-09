@@ -20,7 +20,11 @@ pretty standard.  The test suite is based on
 
 # Getting Started
 
-Clone the master [git repository](https://github.com/djoyner/zigbee-znet25):
+Install with cabal:
+
+* `cabal install zigbee-znet25`
+
+Or clone the master [git repository](https://github.com/djoyner/zigbee-znet25):
 
 * `git clone git://github.com/djoyner/zigbee-znet25.git`
 
