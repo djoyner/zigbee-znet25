@@ -29,7 +29,8 @@ Or clone the master [git repository](https://github.com/djoyner/zigbee-znet25):
 * `git clone git://github.com/djoyner/zigbee-znet25.git`
 
 A [sample program](https://github.com/djoyner/zigbee-znet25/blob/master/sample.hs)
-is included.
+is included.  I've also used the library to communicate with an
+[Arduino-based temperature and power-usage probe](https://github.com/djoyner/hap-probe-collector).
 
 # Author and Maintainer
 
