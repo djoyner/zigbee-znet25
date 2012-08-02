@@ -91,7 +91,7 @@ data Frame = ApiIdNotImplemented Word8
            | XBeeSensorReadIndicator Address NetworkAddress ReceiveOptions
                XBeeSensorMask B.ByteString
            | NodeIdentificationIndicator Address NetworkAddress ReceiveOptions
-               RemoteAddress RemoteNetworkAddress String ParentNetworkAddress
+               RemoteNetworkAddress RemoteAddress String ParentNetworkAddress
                DeviceType SourceAction ProfileId ManufacturerId
   deriving (Eq, Show)
 
@@ -209,14 +209,14 @@ instance Serialize Frame where
     put xbeeSensorMask >>
     putByteString val
 
-  put (NodeIdentificationIndicator addr nwaddr rxOptions remAddr remNWAddr
+  put (NodeIdentificationIndicator addr nwaddr rxOptions remNWAddr remAddr
        nodeIdStr parentNWAddr devType srcAction profileId mfgId) =
     put apiIdNodeIdentificationIndicator >>
     put addr >>
     put nwaddr >>
     put rxOptions >>
-    put remAddr >>
     put remNWAddr >>
+    put remAddr >>
     putNullTerminatedString nodeIdStr >>
     put parentNWAddr >>
     put devType >>
